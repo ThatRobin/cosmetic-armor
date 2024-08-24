@@ -1,6 +1,6 @@
-package io.github.apace100.cosmetic_armor.mixin;
+package io.github.thatrobin3001.cosmetic_armor.mixin;
 
-import io.github.apace100.cosmetic_armor.CosmeticArmor;
+import io.github.thatrobin3001.cosmetic_armor.CosmeticArmor;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.render.entity.feature.HeadFeatureRenderer;
