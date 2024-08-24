@@ -1,4 +1,4 @@
-package io.github.thatrobin3001.cosmetic_armor;
+package io.github.apace100.cosmetic_armor;
 
 import dev.emi.trinkets.api.*;
 import net.fabricmc.api.ModInitializer;
@@ -12,7 +12,6 @@ import net.minecraft.registry.tag.*;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Pair;
 import net.minecraft.registry.RegistryKeys;
-import org.apache.commons.compress.utils.Lists;
 
 import java.util.List;
 import java.util.Optional;
@@ -24,16 +23,15 @@ public class CosmeticArmor implements ModInitializer {
 	public static final TagKey<Item> BLACKLIST = TagKey.of(RegistryKeys.ITEM, id("blacklist"));
 	public static final TagKey<Item> ALWAYS_VISIBLE = TagKey.of(RegistryKeys.ITEM, id("always_visible"));
 
-	public static final List<EquipmentSlot> EQUIPMENT_SLOTS = List.of(EquipmentSlot.HEAD,EquipmentSlot.CHEST,EquipmentSlot.LEGS,EquipmentSlot.FEET);
-
 	@Override
 	public void onInitialize() {
-		for(EquipmentSlot slot : EQUIPMENT_SLOTS) {
+		for(int i = 0; i < 4; i++) {
+			EquipmentSlot slot = EquipmentSlot.fromTypeIndex(EquipmentSlot.Type.ARMOR, i);
 			TrinketsApi.registerTrinketPredicate(id(slot.getName()), (stack, slotReference, entity) -> {
 				if(stack.isIn(BLACKLIST)) {
 					return TriState.FALSE;
 				}
-				if(entity.getPreferredEquipmentSlot(stack) == slot) {
+				if(MobEntity.getPreferredEquipmentSlot(stack) == slot) {
 					return TriState.TRUE;
 				}
 				return TriState.DEFAULT;
@@ -44,7 +42,7 @@ public class CosmeticArmor implements ModInitializer {
 	public static ItemStack getCosmeticArmor(LivingEntity entity, EquipmentSlot slot) {
 		Optional<TrinketComponent> component = TrinketsApi.getTrinketComponent(entity);
 		if(component.isPresent()) {
-			List<Pair<SlotReference, ItemStack>> list = component.get().getEquipped(stack -> entity.getPreferredEquipmentSlot(stack) == slot);
+			List<Pair<SlotReference, ItemStack>> list = component.get().getEquipped(stack -> MobEntity.getPreferredEquipmentSlot(stack) == slot);
 			for(Pair<SlotReference, ItemStack> equipped : list) {
 				SlotType slotType = equipped.getLeft().inventory().getSlotType();
 				if(!slotType.getName().equals("cosmetic")) {
@@ -60,6 +58,6 @@ public class CosmeticArmor implements ModInitializer {
 	}
 
 	private static Identifier id(String path) {
-		return Identifier.of(MODID, path);
+		return new Identifier(MODID, path);
 	}
 }
