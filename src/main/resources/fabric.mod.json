@@ -6,7 +6,8 @@
   "name": "Cosmetic Armor",
   "description": "Adds additional armor slots which can be used to show a different kind of armor than the one you're actually wearing.",
   "authors": [
-    "Apace"
+    "Apace",
+    "ThatRobin3001"
   ],
   "contact": {
     "homepage": "",
@@ -19,7 +20,7 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "io.github.apace100.cosmetic_armor.CosmeticArmor"
+      "io.github.thatrobin3001.cosmetic_armor.CosmeticArmor"
     ]
   },
   "mixins": [
@@ -30,19 +31,7 @@
     "fabricloader": ">=0.14.0",
     "fabric": "*",
     "minecraft": ">=1.20",
-    "java": ">=17",
+    "java": ">=21",
     "trinkets": "*"
-  },
-
-  "custom": {
-    "mc-publish": {
-      "modrinth": "JrIYhb1P",
-      "curseforge": "436659",
-      "loaders": ["fabric", "quilt"],
-      "dependencies": [
-        "fabric(required){modrinth:P7dR8mSH}{curseforge:306612}#(ignore:github)",
-        "trinkets(required){modrinth:5aaWibi9}{curseforge:341284}#(ignore:github)"
-      ]
-    }
   }
 }

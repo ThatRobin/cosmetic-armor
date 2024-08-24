@@ -1,7 +1,7 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "io.github.apace100.cosmetic_armor.mixin",
+  "package": "io.github.thatrobin3001.cosmetic_armor.mixin",
   "compatibilityLevel": "JAVA_16",
   "mixins": [
   ],
